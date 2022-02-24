@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
           python run.py
 
-          echo "##Performance Metrics" > report.md
+          echo "## Performance Metrics" > report.md
           cat metrics.txt >> report.md
 
           cml-send-comment report.md
