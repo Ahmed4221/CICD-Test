@@ -20,3 +20,8 @@ jobs:
           # Your ML workflow goes here
           pip install -r requirements.txt
           python run.py
+
+          echo "##Performance Metrics" > report.md
+          cat metrics.txt >> report.md
+
+          cml-send-comment report.md

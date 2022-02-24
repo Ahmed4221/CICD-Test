@@ -39,5 +39,9 @@ def main():
     plt.ylim(lims)
     _ = plt.plot(lims, lims)
     plt.savefig('loss.png')
+
+    #writing the results to the metrics file for better visualization
+    with open('metrics.txt','w') as outfile:
+        outfile.write(str(performance.head(1)))
 if __name__ == '__main__':
     main()
