@@ -42,6 +42,6 @@ def main():
 
     #writing the results to the metrics file for better visualization
     with open('metrics.txt','w') as outfile:
-        outfile.write(str(performance.head(1)))
+        outfile.write(str(performance.iloc[0]))
 if __name__ == '__main__':
     main()
