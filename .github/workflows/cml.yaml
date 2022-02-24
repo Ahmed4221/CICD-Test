@@ -18,4 +18,7 @@ jobs:
           cat metrics.txt >> report.md
           
           cml-send-comment report.md
+          cml-publish loss.png --md >> report.md
+          
+          cml-send-comment report.md
 
