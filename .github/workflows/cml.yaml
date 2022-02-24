@@ -24,4 +24,3 @@ jobs:
           echo "## Performance Metrics" > report.md
           cat metrics.txt >> report.md
 
-          cml-send-comment report.md
