@@ -4,6 +4,6 @@ DATA_COLUMNS = ['MPG', 'Cylinders', 'Displacement', 'Horsepower', 'Weight',
 NORMALIZE = False
 TARGET_VARIABLE = 'MPG'
 # FEATURES_TO_USE = [ 'Cylinders', 'Displacement', 'Horsepower', 'Weight', 'Acceleration', 'Model Year', 'Europe', 'Japan', 'USA']
-FEATURES_TO_USE = [ 'MPG', 'Horsepower','Displacement']
+FEATURES_TO_USE = [ 'MPG', 'Horsepower']
 NORMALIZE_HORSEPOWER = False
 RESULTS_PATH = "Results/"
