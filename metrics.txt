@@ -1,1 +1,1 @@
-Performance of DNN is : 2.628471612930298
+Performance of DNN is : 2.635221004486084

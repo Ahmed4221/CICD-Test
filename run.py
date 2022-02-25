@@ -34,8 +34,8 @@ def main():
     plotResults(test_labels,predictions)
     #checking commit condition
     reset,previous_loss = gitReset(test_results)
-    if not reset:
-        #writeResults
+    if reset == False:
+        print("Writing Results")
         writeResults(test_results)
 
 
