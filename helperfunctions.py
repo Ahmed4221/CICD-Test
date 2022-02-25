@@ -56,7 +56,7 @@ def gitReset(test_results):
         pervious_accuracy = float(f.readline())
     reset = False
     if test_results['dnn_model']<pervious_accuracy:
-        # subprocess.call(["git", "reset","--hard","HEAD~1"])
+        subprocess.call(["git", "reset","--hard","HEAD~1"])
         print("REVERSED")
         return True
     else:
