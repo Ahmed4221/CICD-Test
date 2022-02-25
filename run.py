@@ -32,10 +32,11 @@ def main():
     predictions = predict(test_features,dnn_model)
     #plotting predictions
     plotResults(test_labels,predictions)
-    #writeResults
-    writeResults(test_results)
     #checking commit condition
     reset,previous_loss = gitReset(test_results)
+    if not reset:
+        #writeResults
+        writeResults(test_results)
 
 
     #writing the results to the metrics file for better visualization
