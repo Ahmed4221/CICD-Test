@@ -1,7 +1,10 @@
+from cgitb import reset
 from helperfunctions import *
 
-
 def main():
+    if not os.path.exists(RESULTS_PATH):
+        os.mkdir(RESULTS_PATH)
+
     dataset = getData().copy()
     dataset = preprocessData(dataset)
     train_dataset,test_dataset = splitTraintTest(dataset)
@@ -26,24 +29,22 @@ def main():
     verbose=1, epochs=100)
     test_results = {}
     test_results['dnn_model'] = dnn_model.evaluate(test_features, test_labels, verbose=0)
-    performance = pd.DataFrame(test_results, index=['Mean absolute error [MPG]']).T
     predictions = predict(test_features,dnn_model)
+    #plotting predictions
+    plotResults(test_labels,predictions)
+    #writeResults
+    writeResults(test_results)
+    #checking commit condition
+    reset = gitReset(test_results)
 
-    # #plotting predictions
-    a = plt.axes(aspect='equal')
-    plt.scatter(test_labels, predictions)
-    plt.xlabel('True Values [MPG]')
-    plt.ylabel('Predictions [MPG]')
-    lims = [0, 50]
-    plt.xlim(lims)
-    plt.ylim(lims)
-    _ = plt.plot(lims, lims)
-    plt.savefig('loss.png')
 
     #writing the results to the metrics file for better visualization
     with open('metrics.txt','w') as outfile:
         outfile.write("Performance of DNN is : {}".format(str(test_results['dnn_model'])))
+        if reset:
+            outfile.write("\n The commit was reset for not reaching threshold")
+
     
-    assert test_results['dnn_model']>1,"Accuracy threshold not reached"
+
 if __name__ == '__main__':
     main()

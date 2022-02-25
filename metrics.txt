@@ -1,2 +1,1 @@
-           Mean absolute error [MPG]
-dnn_model                   2.575546
+Performance of DNN is : 2.628471612930298
