@@ -35,7 +35,7 @@ def main():
     #writeResults
     writeResults(test_results)
     #checking commit condition
-    reset = gitReset(test_results)
+    reset,previous_loss = gitReset(test_results)
 
 
     #writing the results to the metrics file for better visualization
@@ -43,6 +43,7 @@ def main():
         outfile.write("Performance of DNN is : {}".format(str(test_results['dnn_model'])))
         if reset:
             outfile.write("\n The commit was reset for not reaching threshold")
+            outfile.write("\n Previous => {} VS current => {} ".format(str(previous_loss),str(test_results['dnn_model'])))
 
     
 

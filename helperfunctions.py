@@ -50,17 +50,16 @@ def plotResults(test_labels,predictions):
     plt.savefig('loss.png')
 
 def gitReset(test_results):
-    pervious_accuracy = None
+    previous_loss = None
     fileName = os.path.join(RESULTS_PATH,'Accuracy.txt')
     with open(fileName) as f:
-        pervious_accuracy = float(f.readline())
+        previous_loss = float(f.readline())
     reset = False
-    if test_results['dnn_model']<pervious_accuracy:
+    if test_results['dnn_model']>previous_loss:
         subprocess.call(["git", "reset","--hard","HEAD~1"])
-        print("REVERSED")
-        return True
+        return True,previous_loss
     else:
-        return False
+        return False,previous_loss
         
 
 def writeResults(test_results):
