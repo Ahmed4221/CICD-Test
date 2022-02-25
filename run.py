@@ -42,7 +42,7 @@ def main():
 
     #writing the results to the metrics file for better visualization
     with open('metrics.txt','w') as outfile:
-        outfile.write(str(performance.iloc[0]))
+        outfile.write("Performance of DNN is : {}".format(str(test_results['dnn_model'])))
     
     assert test_results['dnn_model']>1,"Accuracy threshold not reached"
 if __name__ == '__main__':
