@@ -33,18 +33,18 @@ def main():
     #plotting predictions
     plotResults(test_labels,predictions)
     #checking commit condition
-    reset,previous_loss = gitReset(test_results)
-    if reset == False:
-        print("Writing Results")
-        writeResults(test_results)
+    # reset,previous_loss = gitReset(test_results)
+    # if reset == False:
+    #     print("Writing Results")
+    #     writeResults(test_results)
 
 
     #writing the results to the metrics file for better visualization
     with open('metrics.txt','w') as outfile:
         outfile.write("Performance of DNN is : {}".format(str(test_results['dnn_model'])))
-        if reset:
-            outfile.write("\n The commit was reset for not reaching threshold")
-            outfile.write("\n Previous => {} VS current => {} ".format(str(previous_loss),str(test_results['dnn_model'])))
+        # if reset:
+        #     outfile.write("\n The commit was reset for not reaching threshold")
+            # outfile.write("\n Previous => {} VS current => {} ".format(str(previous_loss),str(test_results['dnn_model'])))
 
     
 
