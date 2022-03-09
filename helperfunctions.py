@@ -4,6 +4,8 @@ import pandas as pd
 import seaborn as sns
 from model import *
 from constants import *
+import subprocess
+import os
 print(tf.__version__)
 # Make NumPy printouts easier to read.
 np.set_printoptions(precision=3, suppress=True)
@@ -35,3 +37,32 @@ def getNormalizer(input_shape_incoming = None):
 
         # return  tf.keras.layers.Normalization(axis=-1)
         return tf.keras.layers.experimental.preprocessing.Normalization(axis=-1)
+
+def plotResults(test_labels,predictions):
+    a = plt.axes(aspect='equal')
+    plt.scatter(test_labels, predictions)
+    plt.xlabel('True Values [MPG]')
+    plt.ylabel('Predictions [MPG]')
+    lims = [0, 50]
+    plt.xlim(lims)
+    plt.ylim(lims)
+    _ = plt.plot(lims, lims)
+    plt.savefig('loss.png')
+
+def gitReset(test_results):
+    previous_loss = None
+    fileName = os.path.join(RESULTS_PATH,'Accuracy.txt')
+    with open(fileName) as f:
+        previous_loss = float(f.readline())
+    reset = False
+    if test_results['dnn_model']>previous_loss:
+        subprocess.call(["git", "reset","--hard","HEAD~1"])
+        return True,previous_loss
+    else:
+        return False,previous_loss
+        
+
+def writeResults(test_results):
+    fileName = os.path.join(RESULTS_PATH,'Accuracy.txt')
+    with open(fileName,'w') as outfile:
+        outfile.write(str(test_results['dnn_model']))
